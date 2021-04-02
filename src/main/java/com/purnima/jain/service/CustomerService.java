@@ -3,6 +3,9 @@ package com.purnima.jain.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.purnima.jain.domain.Customer;
@@ -22,6 +25,10 @@ public class CustomerService {
 		this.customerRepository = customerRepository;
 	}
 
+	// Note: Unlike condition(), this expression is evaluated after the method has
+	// been called and can therefore refer to the "result". Default is "", meaning
+	// that caching is never vetoed.
+	@Cacheable(cacheNames = "CUSTOMER_CACHE", key = "#customerId", unless = "#result.customerId == 2") // key = "#customer.customerId" // customerId == 2 will not be cached
 	public Customer getCustomerById(Integer customerId) {
 		log.info("Inside the CustomerService::getCustomerById() for customerId :: {}", customerId);
 		CustomerEntity customerEntity = customerRepository.findById(customerId).orElse(null);
@@ -48,6 +55,7 @@ public class CustomerService {
 		return customerList;
 	}
 
+	@CachePut(cacheNames = "CUSTOMER_CACHE", key = "#customer.customerId")
 	public Customer updateCustomer(Customer customer) {
 		log.info("Inside the CustomerService::updateCustomer() for customer :: {}", customer.toString());
 		
@@ -59,6 +67,7 @@ public class CustomerService {
 		return customerUpdated;
 	}
 
+	@CacheEvict(cacheNames = "CUSTOMER_CACHE", allEntries = false, key = "#customerId")
 	public void deleteCustomer(Integer customerId) {
 		log.info("Inside the CustomerService::deleteCustomer() for customerId :: {}", customerId);
 		customerRepository.deleteById(customerId);
