@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "2bdfc26f-2fa2-4def-a6ce-187322a36af0",
+		"_postman_id": "559e35a0-dbb3-40d5-a6d5-56ec790f3f3c",
 		"name": "Redis-As-Cache",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -34,7 +34,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"firstName\": \"Matt\",\r\n    \"lastName\" : \"Haig\"\r\n}",
+					"raw": "{\r\n    \"firstName\": \"Eddard\",\r\n    \"lastName\" : \"Stark\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -86,7 +86,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"customerId\": 1,\r\n    \"firstName\": \"HugoKKKKK\",\r\n    \"lastName\": \"BossKKKK\"\r\n}",
+					"raw": "{\r\n    \"customerId\": 1,\r\n    \"firstName\": \"Arya\",\r\n    \"lastName\": \"Stark\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
